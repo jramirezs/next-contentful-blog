@@ -48,16 +48,16 @@ const Navbar: React.FC = () => {
           { block: visible }
         )}
       >
-        <div className="py-2 px-4 md:p-0">
-          <ul className="flex flex-col md:flex-row">
-            <li className="py-4 md:py-0 md:pr-6">
+        <div className="">
+          <ul className="flex flex-col md:flex-row py-2 px-4 md:p-0">
+            <li>
               <Link href="/" passHref>
-                <a className="hover:underline">📖 About</a>
+                <a className="block hover:underline py-4 md:py-0 md:pr-6">📖 About</a>
               </Link>
             </li>
-            <li className="py-4 md:py-0 md:pr-6">
+            <li>
               <Link href="/blog" passHref>
-                <a className="hover:underline">📝 Blog</a>
+                <a className="block hover:underline py-4 md:py-0 md:pr-6">📝 Blog</a>
               </Link>
             </li>
             {person.cv && (
