@@ -1,3 +1,5 @@
+// Nice idea but it won't work with PurgeCSS
+
 interface Breakpoints {
   sm?: string;
   md?: string;

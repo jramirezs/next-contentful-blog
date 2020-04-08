@@ -4,8 +4,6 @@ import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-import rs from '../utils/responsive-styles';
-
 interface Props {
   url: string;
   className?: string;
@@ -47,10 +45,8 @@ const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
     <div
       ref={currentRef}
       className={cn(
-        rs(
-          'bg-main-400 w-full text-center flex bottom-0 justify-around fixed text-white p-2 transition duration-300 ease-in-out',
-          { lg: 'w-auto flex-col bottom-auto p-4' }
-        ),
+        'bg-main-400 w-full text-center flex bottom-0 justify-around fixed text-white p-2 transition duration-300 ease-in-out',
+        'lg:w-auto lg:flex-col lg:bottom-auto lg:p-4',
         className,
         { 'z-0 opacity-0': hidden },
         { 'z-20 opacity-100': !hidden }

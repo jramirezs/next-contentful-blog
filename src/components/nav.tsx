@@ -3,7 +3,6 @@ import cn from 'classnames';
 import Link from 'next/link';
 
 import PersonContext from '../person-context';
-import rs from '../utils/responsive-styles';
 
 // More like blog navbar but ideally will be extended
 const Navbar: React.FC = () => {
@@ -12,14 +11,7 @@ const Navbar: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <nav
-      className={rs(
-        'flex items-center bg-main-500 leading-none text-white shadow z-20 sticky top-0 justify-between p-4',
-        {
-          lg: 'px-8',
-        }
-      )}
-    >
+    <nav className="flex items-center bg-main-500 leading-none text-white shadow z-20 sticky top-0 justify-between p-4 lg:px-8">
       <div>
         <span>
           <Link href="/blog" passHref>
@@ -50,9 +42,8 @@ const Navbar: React.FC = () => {
       </div>
       <div
         className={cn(
-          rs('border-t absolute mt-16 w-full top-0 left-0 bg-main-500', {
-            md: 'border-none relative mt-0 w-auto block',
-          }),
+          'border-t absolute mt-16 w-full top-0 left-0 bg-main-500',
+          'md:border-none md:relative md:mt-0 md:w-auto md:block',
           { hidden: !visible },
           { block: visible }
         )}
@@ -72,11 +63,9 @@ const Navbar: React.FC = () => {
             {person.cv && (
               <li className="py-4 md:py-0">
                 <a
-                  className={rs(
+                  className={cn(
                     'hover:text-main-500 hover:bg-white transition duration-300 ease-in-out',
-                    {
-                      md: 'border border-white text-white rounded py-2 px-4 font-semibold',
-                    }
+                    'md:border md:border-white md:text-white md:rounded md:py-2 md:px-4 md:font-semibold'
                   )}
                   href={person.cv.fields.file.url}
                   target="_blank"

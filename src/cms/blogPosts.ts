@@ -17,7 +17,7 @@ export interface BlogPost {
   readingTime?: number;
 }
 
-// Retrieve this fields for list views
+// Retrieve only these fields for list views
 const fields = ['title', 'slug', 'category', 'heroImage', 'description', 'publishDate'];
 
 const mapFromEntry = (entry: Entry<BlogPost>): BlogPost => ({ id: entry.sys.id, ...entry.fields });
