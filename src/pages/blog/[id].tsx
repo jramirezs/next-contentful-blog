@@ -12,7 +12,7 @@ import Navbar from '../../components/nav';
 import Footer from '../../components/footer';
 import BlogCard from '../../components/blog-card';
 import SocialShare from '../../components/social-share';
-import ContentfulRichTextContent from '../../components/contentful-rich-text-content';
+import ContentfulRichTextContent from '../../components/contentful/rich-text-content';
 
 import PersonContext from '../../person-context';
 import {

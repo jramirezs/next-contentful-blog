@@ -9,7 +9,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import Layout from '../components/layout';
 import BlogCard from '../components/blog-card';
-import ContentfulRichTextContent from '../components/contentful-rich-text-content';
+import ContentfulRichTextContent from '../components/contentful/rich-text-content';
 
 import PersonContext from '../person-context';
 import { getRecentBlogPosts, BlogPost } from '../cms/blogPosts';

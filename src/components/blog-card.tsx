@@ -27,7 +27,7 @@ const BlogCard: React.FC<Props> = ({ heroUrl, title, description, category, publ
         <span className="uppercase text-xs font-semibold text-main-500 block">{category}</span>
         <div className="mt-2 md:mt-4 overflow-hidden h-36">
           <h3 className="font-bold text-lg text-gray-900">{title}</h3>
-          <h4 className="font-light text-gray-600 mb-4 text-sm">
+          <h4 className="font-light text-gray-800 mb-4 text-sm">
             {format(new Date(publishDate), 'LLLL do, yyyy')}
           </h4>
           <p className="text-gray-800 font-serif text-sm leading-6">{description}</p>
@@ -62,7 +62,7 @@ const BlogCardLeading: React.FC<Props> = ({
           </p>
           <div className="mt-2 md:mt-4">
             <h3 className="font-bold text-xl text-gray-900">{title}</h3>
-            <h4 className="font-light text-gray-600 mb-4 text-sm">
+            <h4 className="font-light text-gray-800 mb-4 text-sm">
               {format(new Date(publishDate), 'LLLL do, yyyy')}
             </h4>
 

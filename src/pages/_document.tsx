@@ -7,7 +7,7 @@ const { GA_TRACKING_ID } = process.env;
 class NextSite extends Document {
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />

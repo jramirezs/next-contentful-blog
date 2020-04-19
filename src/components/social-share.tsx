@@ -45,7 +45,7 @@ const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
     <div
       ref={currentRef}
       className={cn(
-        'bg-main-400 w-full text-center flex bottom-0 justify-around fixed text-white p-2 transition duration-300 ease-in-out',
+        'bg-main-500 w-full text-center flex bottom-0 justify-around fixed text-white p-2 transition duration-300 ease-in-out',
         'lg:w-auto lg:flex-col lg:bottom-auto lg:p-4',
         className,
         { 'z-0 opacity-0': hidden },
@@ -58,6 +58,7 @@ const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
           href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Facebook"
         >
           <FontAwesomeIcon
             className="transform hover:scale-110 transition duration-100 ease-in-out hover:text-gray-100"
@@ -75,6 +76,7 @@ const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
           )}&source=${encodeURIComponent(url)}`}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Linkedin"
         >
           <FontAwesomeIcon
             className="transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-100"
@@ -90,6 +92,7 @@ const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
           )}&url=${encodeURIComponent(url)}`}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Twitter"
         >
           <FontAwesomeIcon
             className="transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-100"

@@ -9,7 +9,8 @@ import {
   Options,
 } from '@contentful/rich-text-react-renderer';
 
-import emojiReplace from '../utils/emoji-replace';
+import ResponsiveImage from './responsive-image';
+import emojiReplace from '../../utils/emoji-replace';
 
 const options: Options = {
   renderMark: {
@@ -60,7 +61,11 @@ const options: Options = {
       }
       return (
         <div className="flex justify-center my-6">
-          <img className="w-full lg:w-1/2 " src={`${fields.file.url}?w=600`} alt={fields.title} />
+          <ResponsiveImage
+            className="w-full lg:w-3/4"
+            src={`${fields.file.url}`}
+            alt={fields.title}
+          />
         </div>
       );
     }) as NodeRenderer,
