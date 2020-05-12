@@ -28,6 +28,7 @@ const Navbar: React.FC = () => {
       <div>
         <button
           type="button"
+          aria-label="accordion"
           className="focus:outline-none flex items-center md:hidden"
           onClick={(): void => setVisible(visible => !visible)}
         >
