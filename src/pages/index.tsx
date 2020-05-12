@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NextPage, GetServerSideProps } from 'next';
 
 import Link from 'next/link';
@@ -12,15 +12,14 @@ import BlogCard from '@blog/components/blog-card';
 import ContentfulRichTextContent from '@blog/components/contentful/rich-text-content';
 
 import { getRecentBlogPosts, BlogPost } from '@blog/cms/blogPosts';
-import { getPerson } from '@blog/cms/person';
+import { getPerson, Person } from '@blog/cms/person';
 
 interface Props {
+  person: Person;
   recentBlogPosts: BlogPost[];
 }
 
-const IndexPage: NextPage<Props> = ({ recentBlogPosts }) => {
-  const person = useContext(PersonContext);
-
+const IndexPage: NextPage<Props> = ({ recentBlogPosts, person }) => {
   return (
     <Layout title={`${person.name} | ${person.title}`}>
       <div className="flex flex-wrap lg:h-screen">
@@ -152,9 +151,12 @@ const IndexPage: NextPage<Props> = ({ recentBlogPosts }) => {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const [recentBlogPosts] = await Promise.all([getRecentBlogPosts({ limit: 4 })]);
+  const [person, recentBlogPosts] = await Promise.all([
+    getPerson({ allFields: true }),
+    getRecentBlogPosts({ limit: 4 }),
+  ]);
 
-  return { props: { recentBlogPosts } };
+  return { props: { person, recentBlogPosts } };
 };
 
 export default IndexPage;

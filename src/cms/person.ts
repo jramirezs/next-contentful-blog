@@ -19,9 +19,18 @@ export interface Person {
   cv: Asset;
 }
 
-export const getPerson = async (): Promise<Person> => {
+/**
+ * Fetches 'person' (blog owner) data
+ * @param options.allFields If true brings all person information else it brings only required data in all pages
+ */
+export const getPerson = async ({ allFields }: { allFields?: boolean } = {}): Promise<Person> => {
   const entries = await client.getEntries<Person>({
     content_type: 'person',
+    select: !allFields
+      ? ['name', 'title', 'currentLocation', 'slogan', 'email', 'image']
+          .map(f => `fields.${f}`)
+          .join(',')
+      : undefined,
   });
 
   return entries.items[0].fields;

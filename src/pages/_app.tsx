@@ -63,7 +63,7 @@ MyApp.getInitialProps = async (appContext: AppContext): Promise<Partial<Props>> 
   const { req } = appContext.ctx;
   const hostUrl = `https://${req?.headers.host || req?.headers['x-forwarded-host']}`;
 
-  const person = await getPerson();
+  const person = await getPerson({ allFields: false });
 
   return { ...appProps, person, hostUrl };
 };
