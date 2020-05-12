@@ -9,8 +9,8 @@ import {
   Options,
 } from '@contentful/rich-text-react-renderer';
 
-import ResponsiveImage from './responsive-image';
-import emojiReplace from '../../utils/emoji-replace';
+import ResponsiveImage from '@blog/components/contentful/responsive-image';
+import emojiReplace from '@blog/utils/emoji-replace';
 
 const options: Options = {
   renderMark: {

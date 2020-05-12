@@ -7,10 +7,10 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
-import PersonContext from '../person-context';
-import { getPerson, Person } from '../cms/person';
+import PersonContext from '@blog/person-context';
+import { getPerson, Person } from '@blog/cms/person';
 
-import '../styles/tailwind.css';
+import '@blog/styles/tailwind.css';
 
 interface Props extends AppProps {
   hostUrl?: string;

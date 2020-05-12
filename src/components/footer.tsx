@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import PersonContext from '../person-context';
+import PersonContext from '@blog/person-context';
 
 const Footer: React.FC = () => {
   const person = useContext(PersonContext);

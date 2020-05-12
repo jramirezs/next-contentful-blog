@@ -1,27 +1,26 @@
 import React, { useRef, useContext } from 'react';
 import { NextPage, GetServerSideProps } from 'next';
-import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 import Error from 'next/error';
+import { NextSeo } from 'next-seo';
 
 import { format } from 'date-fns';
 
 import Link from 'next/link';
+import Layout from '@blog/components/layout';
+import Navbar from '@blog/components/nav';
+import Footer from '@blog/components/footer';
+import BlogCard from '@blog/components/blog-card';
+import SocialShare from '@blog/components/social-share';
+import ContentfulRichTextContent from '@blog/components/contentful/rich-text-content';
 
-import Layout from '../../components/layout';
-import Navbar from '../../components/nav';
-import Footer from '../../components/footer';
-import BlogCard from '../../components/blog-card';
-import SocialShare from '../../components/social-share';
-import ContentfulRichTextContent from '../../components/contentful/rich-text-content';
-
-import PersonContext from '../../person-context';
+import PersonContext from '@blog/person-context';
 import {
   getBlogPostBySlug,
   getRelatedBlogPosts,
   getRecentBlogPosts,
   BlogPost,
-} from '../../cms/blogPosts';
-import { useRouter } from 'next/router';
+} from '@blog/cms/blogPosts';
 
 interface Props {
   blogPost: BlogPost | null;

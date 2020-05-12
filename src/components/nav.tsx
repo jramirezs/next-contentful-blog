@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import cn from 'classnames';
 import Link from 'next/link';
 
-import PersonContext from '../person-context';
+import PersonContext from '@blog/person-context';
 
 // More like blog navbar but ideally will be extended
 const Navbar: React.FC = () => {

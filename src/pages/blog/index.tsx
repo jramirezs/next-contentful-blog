@@ -3,13 +3,13 @@ import { NextPage, GetServerSideProps } from 'next';
 import { NextSeo } from 'next-seo';
 
 import Link from 'next/link';
-import Layout from '../../components/layout';
-import Navbar from '../../components/nav';
-import Footer from '../../components/footer';
-import BlogCard from '../../components/blog-card';
+import Layout from '@blog/components/layout';
+import Navbar from '@blog/components/nav';
+import Footer from '@blog/components/footer';
+import BlogCard from '@blog/components/blog-card';
 
-import PersonContext from '../../person-context';
-import { getRecentBlogPosts, BlogPost } from '../../cms/blogPosts';
+import PersonContext from '@blog/person-context';
+import { getRecentBlogPosts, BlogPost } from '@blog/cms/blogPosts';
 
 interface Props {
   blogPosts: BlogPost[];

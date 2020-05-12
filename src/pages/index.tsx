@@ -7,12 +7,12 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-import Layout from '../components/layout';
-import BlogCard from '../components/blog-card';
-import ContentfulRichTextContent from '../components/contentful/rich-text-content';
+import Layout from '@blog/components/layout';
+import BlogCard from '@blog/components/blog-card';
+import ContentfulRichTextContent from '@blog/components/contentful/rich-text-content';
 
-import PersonContext from '../person-context';
-import { getRecentBlogPosts, BlogPost } from '../cms/blogPosts';
+import { getRecentBlogPosts, BlogPost } from '@blog/cms/blogPosts';
+import { getPerson } from '@blog/cms/person';
 
 interface Props {
   recentBlogPosts: BlogPost[];
