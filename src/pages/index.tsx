@@ -1,151 +1,109 @@
-import React from 'react';
-import { NextPage, GetServerSideProps } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-
-import Layout from '@blog/components/layout';
-import BlogCard from '@blog/components/blog-card';
-import ContentfulRichTextContent from '@blog/components/contentful/rich-text-content';
+import { Layout } from '@blog/components/layout';
+import { Navbar } from '@blog/components/nav';
+import { BlogCard } from '@blog/components/blog-card';
+import { Container } from '@blog/components/container';
+import { Footer } from '@blog/components/footer';
 
 import { getRecentBlogPosts, BlogPost } from '@blog/cms/blogPosts';
 import { getPerson, Person } from '@blog/cms/person';
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   person: Person;
   recentBlogPosts: BlogPost[];
 }
 
-const IndexPage: NextPage<Props> = ({ recentBlogPosts, person }) => {
+const IndexPage: NextPage<Props> = ({ person, recentBlogPosts }) => {
   return (
     <Layout title={`${person.name} | ${person.title}`}>
-      <div className="flex flex-wrap lg:h-screen">
-        <div
-          style={{
-            backgroundImage: 'linear-gradient(90deg, var(--color-main-500), var(--color-main-600))',
-          }}
-          className="relative w-full lg:w-1/4 text-center lg:text-right bg-main-500 text-white"
-        >
-          {/* <div
-            className="absolute top-0 w-full h-full opacity-25 z-0"
-            style={{
-              backgroundAttachment: 'fixed',
-              backgroundImage: 'url(https://source.unsplash.com/yp18P2eKSr0)',
-              backgroundRepeat: 'no-repeat',
-              backgroundPositionY: 'center',
-              backgroundPositionX: 'initial',
-            }}
-          ></div> */}
-          <div className="relative z-10 p-8 lg:px-12 lg:pt-12 xl:pt-24 lg:sticky lg:top-0 lg:h-screen">
-            <div className="lg:flex lg:flex-col lg:justify-between h-full">
-              <div className="mb-8 lg:mb-0">
-                <span className="inline-block w-32 lg:w-48 mb-4 lg:mb-8">
-                  <img
-                    className="w-full rounded-full"
-                    src={`${person.image?.fields.file.url}?w=250&h=250&fit=fill`}
-                    alt="avatar"
-                  />
-                </span>
-                <h1 className="font-normal text-xl lg:text-lg xl:text-xl lg:leading-relaxed whitespace-pre-line">
-                  {person.shortBio}
-                </h1>
+      <Navbar />
+      <main>
+        <Container className="bg-main-500 text-white px-4 sm:px-8 md:pt-4">
+          <div className="flex flex-col-reverse text-center md:text-left md:flex-row">
+            <div className="md:w-2/3 md:pr-16">
+              <h1 className="font-bold text-2xl md:text-4xl lg:text-5xl font-serif tracking-wide mt-2 sm:mt-4 md:mt-0">
+                Hi! I&apos;m {person.name.split(' ')[0]}
+              </h1>
+              <div className="mt-8 md:text-lg lg:text-2xl">
+                {person.shortBio.split('\n').map((text) => {
+                  return (
+                    <p key={text} className="mb-4">
+                      {text}
+                    </p>
+                  );
+                })}
               </div>
-              <div className="lg:flex lg:justify-evenly">
-                {person.email && (
-                  <a href={`mailto:${person.email}`} target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon
-                      icon={faEnvelope}
-                      className="mx-4 lg:mx-0 transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-200"
-                      size="2x"
-                    />
-                  </a>
-                )}
-                {person.facebook && (
-                  <a href={person.facebook} target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon
-                      icon={faFacebook}
-                      className="mx-4 lg:mx-0 transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-200"
-                      size="2x"
-                    />
-                  </a>
-                )}
-                {person.twitter && (
-                  <a href={person.twitter} target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon
-                      icon={faTwitter}
-                      className="mx-4 lg:mx-0 transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-200"
-                      size="2x"
-                    />
-                  </a>
-                )}
-                {person.linkedIn && (
-                  <a href={person.linkedIn} target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon
-                      icon={faLinkedin}
-                      className="mx-4 lg:mx-0 transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-200"
-                      size="2x"
-                    />
-                  </a>
-                )}
-                {person.cv && (
-                  <a
-                    href={person.cv.fields.file.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Curriculum Vitae"
-                  >
-                    <FontAwesomeIcon
-                      icon={faUserCircle}
-                      className="mx-4 lg:mx-0 transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-200"
-                      size="2x"
-                    />
-                  </a>
-                )}
+              <div className="mt-12">
+                <Link
+                  href="/about"
+                  className="md:text-lg inline-block pb-4 font-bold border-b-2 border-white hover:text-main-200 hover:border-main-200 duration-300 ease-in-out"
+                >
+                  Read more about me
+                </Link>
               </div>
             </div>
+            <div className="text-center flex items-end md:w-1/3 py-4 md:py-0">
+              <img
+                className={
+                  'animate-slow-fade-in block mx-auto bg-main-500 md:bg-trsparent rounded-full md:rounded-none h-36 md:h-[320px] lg:h-[400px] xl:h-[480px]'
+                }
+                src="/images/portrait-unsplash.png"
+                alt="Photo"
+              />
+            </div>
           </div>
-        </div>
-        <div className="w-full lg:w-3/4 px-4 py-8 md:px-8 lg:py-8 lg:px-12 overflow-scroll">
-          {person.longBio && (
-            <>
-              <div>
-                <p className="lg:text-lg leading-loose">
-                  <ContentfulRichTextContent content={person.longBio} />
-                </p>
+        </Container>
+        <Container className="px-4 py-8 lg:py-16">
+          <div className="md:flex">
+            <div className="md:w-1/3">
+              <h1 className="text-xl md:text-2xl font-serif bold mb-4 md:mb-8">
+                <FontAwesomeIcon className="text-main-300 mr-4" icon={faLightbulb} />
+                <span className="text-main-400 tracking-wide">Blog</span>
+              </h1>
+              <p className="mb-8 md:mb-16 leading-8">{person.blogHeading}</p>
+              <div className="mb-8 text-center">
+                <h2 className="flex flex-col-reverse items-center md:flex-col text-lg font-serif bold">
+                  <p className="text-main-500">
+                    <span>Read Recent posts</span>
+                    <span className="ml-2 hidden md:inline">→</span>
+                    <span className="ml-2 inline md:hidden">↓</span>
+                  </p>
+                  <p className="my-2 md:my-4">or</p>
+                  <p>
+                    <Link
+                      href="/blog"
+                      className="inline-block border-b-2 text-main-500 border-main-500 hover:text-main-800 transition duration-300 ease-in-out"
+                    >
+                      See all posts
+                    </Link>
+                  </p>
+                </h2>
               </div>
-              <hr className="my-4 lg:my-8" />
-            </>
-          )}
-          <div>
-            <h2 className="font-normal text-2xl mb-8 text-gray-800">Recent blog posts</h2>
-            <div className="grid gap-6 lg:gap-8 sm:grid-cols-2 mb-8 lg:mb-12">
-              {recentBlogPosts.map(blog => (
-                <Link key={blog.slug} href="/blog/[id]" as={`/blog/${blog.slug}`} passHref>
-                  <a>
+            </div>
+            <div className="md:w-2/3 md:pl-8">
+              <div className="grid gap-4 lg:grid-cols-2">
+                {recentBlogPosts.map((blog, index) => (
+                  <Link key={blog.slug} href={`/blog/${blog.slug}`}>
                     <BlogCard
-                      heroUrl={blog.heroImage.fields.file.url}
                       title={blog.title}
                       category={blog.category}
                       description={blog.description}
                       publishDate={blog.publishDate}
+                      latest={index === 0}
                     />
-                  </a>
-                </Link>
-              ))}
-            </div>
-            <div className="text-center">
-              <Link href="/blog" passHref>
-                <a className="text-main-500 border border-main-500 font-semibold py-2 px-4 rounded">
-                  💬 See more posts
-                </a>
-              </Link>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Container>
+      </main>
+      <Footer />
     </Layout>
   );
 };

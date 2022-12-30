@@ -1,19 +1,17 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: [
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     fontFamily: {
-      serif: ['PT Serif', 'Cambria', 'Times New Roman', 'Times', 'serif'],
-      sans: [
-        'Nunito Sans',
-        'system-ui',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        'Segoe UI',
-        'Roboto',
-        'sans-serif',
-        'Apple Color Emoji',
-        'Segoe UI Emoji',
-        'Segoe UI Symbol',
-      ],
+      serif: ['PT Serif', ...defaultTheme.fontFamily.serif],
+      sans: ['Nunito Sans', ...defaultTheme.fontFamily.sans],
     },
     extend: {
       colors: {
@@ -26,6 +24,15 @@ module.exports = {
         'main-700': 'var(--color-main-700)',
         'main-800': 'var(--color-main-800)',
         'main-900': 'var(--color-main-900)',
+      },
+      animation: {
+        'slow-fade-in': 'fadeIn 750ms linear',
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: '0' },
+          to: { transform: '100' },
+        },
       },
     },
   },

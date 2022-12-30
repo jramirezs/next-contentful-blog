@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/camelcase */
-import client from './client';
-import { Asset } from 'contentful';
-import { Document } from '@contentful/rich-text-types';
+import { client } from './client';
+import type { Asset } from 'contentful';
+import type { Document } from '@contentful/rich-text-types';
 
 export interface Person {
   name: string;
@@ -10,6 +9,7 @@ export interface Person {
   shortBio: string;
   longBio: Document;
   slogan: string;
+  blogHeading: string;
   email: string;
   facebook: string;
   twitter: string;
@@ -27,8 +27,8 @@ export const getPerson = async ({ allFields }: { allFields?: boolean } = {}): Pr
   const entries = await client.getEntries<Person>({
     content_type: 'person',
     select: !allFields
-      ? ['name', 'title', 'currentLocation', 'slogan', 'email', 'image']
-          .map(f => `fields.${f}`)
+      ? ['name', 'title', 'currentLocation', 'slogan', 'email', 'image', 'facebook', 'linkedIn', 'cv']
+          .map((f) => `fields.${f}`)
           .join(',')
       : undefined,
   });

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-import React from 'react';
 import App, { AppProps, AppContext } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 
@@ -7,10 +5,10 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
-import PersonContext from '@blog/person-context';
+import { PersonContext } from '@blog/person-context';
 import { getPerson, Person } from '@blog/cms/person';
 
-import '@blog/styles/tailwind.css';
+import '@blog/styles/globals.css';
 
 interface Props extends AppProps {
   hostUrl?: string;
@@ -39,8 +37,8 @@ const MyApp = ({ Component, pageProps, person, hostUrl }: Props): JSX.Element =>
           url: hostUrl,
           images: [
             {
-              url: `https:${person.image.fields.file.url}?w=800`,
-              width: 800,
+              url: `${hostUrl}/images/og.jpg`,
+              width: 1200,
               alt: 'Og image',
             },
           ],
@@ -61,7 +59,7 @@ MyApp.getInitialProps = async (appContext: AppContext): Promise<Partial<Props>> 
 
   // TODO: Probably can be handled better as well
   const { req } = appContext.ctx;
-  const hostUrl = `https://${req?.headers.host || req?.headers['x-forwarded-host']}`;
+  const hostUrl = `https://${req?.headers.host ?? req?.headers['x-forwarded-host']}`;
 
   const person = await getPerson({ allFields: false });
 

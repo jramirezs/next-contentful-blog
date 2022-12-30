@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/camelcase */
-import { Asset, Entry } from 'contentful';
-import { Document } from '@contentful/rich-text-types';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import type { Entry } from 'contentful';
+import type { Document } from '@contentful/rich-text-types';
 import readingTime from 'reading-time';
-import client from './client';
+
+import { client } from './client';
 
 export interface BlogPost {
   id: string;
   title: string;
   slug: string;
   category: string;
-  heroImage: Asset;
   description: string;
   body: Document;
   publishDate: string;
@@ -18,9 +17,9 @@ export interface BlogPost {
 }
 
 // Retrieve only these fields for list views
-const fields = ['title', 'slug', 'category', 'heroImage', 'description', 'publishDate'];
+const fields = ['title', 'slug', 'category', 'description', 'publishDate'] as const;
 
-const mapFromEntry = (entry: Entry<BlogPost>): BlogPost => ({ id: entry.sys.id, ...entry.fields });
+const mapFromEntry = (entry: Entry<BlogPost>): BlogPost => ({ ...entry.fields, id: entry.sys.id });
 
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   const entries = await client.getEntries<BlogPost>({
@@ -49,7 +48,7 @@ export const getRecentBlogPosts = async ({
 }): Promise<BlogPost[]> => {
   const entries = await client.getEntries<BlogPost>({
     content_type: 'blogPost',
-    select: fields.map(f => `fields.${f}`).join(','),
+    select: fields.map((f) => `fields.${f}`).join(','),
     'sys.id[nin]': omit.join(','),
     order: '-fields.publishDate',
     limit,
@@ -69,7 +68,7 @@ export const getRelatedBlogPosts = async ({
 }): Promise<BlogPost[]> => {
   const entries = await client.getEntries<BlogPost>({
     content_type: 'blogPost',
-    select: fields.map(f => `fields.${f}`).join(','),
+    select: fields.map((f) => `fields.${f}`).join(','),
     'fields.category[in]': category,
     'sys.id[ne]': id,
     order: '-fields.publishDate',

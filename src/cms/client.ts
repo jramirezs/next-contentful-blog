@@ -1,9 +1,7 @@
-import * as contenful from 'contentful';
+import { createClient } from 'contentful';
 
-const client = contenful.createClient({
+export const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID || '',
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || '',
   environment: process.env.CONTENTFUL_ENVIRONMENT || 'development',
 });
-
-export default client;

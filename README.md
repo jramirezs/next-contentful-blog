@@ -1,6 +1,20 @@
 # Next.js Contentful Blog
 
-A personal website and blog using Next.js and Contentful.
+Template for a personal website and blog using Next.js and Contentful.
+
+## Example
+
+<img width="1505" alt="Landing Page" src="https://user-images.githubusercontent.com/10821772/210111434-9e51266a-5271-421d-ad20-65ef26073545.png">
+
+> Example with a generic color. Color pallette can be configured via CSS variables.
+
+## Uses
+
+- Next 13.x (no `app` folder yet).
+- Contentful CMS.
+- Tailwind 3.x.
+- Typescript.
+- Google Analytics.
 
 ## Development
 

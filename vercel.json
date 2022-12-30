@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "CONTENTFUL_SPACE_ID": "@contentful-space-id",
+      "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token",
+      "CONTENTFUL_ENVIRONMENT": "@contentful-environment",
+      "GA_TRACKING_ID": "@ga-tracking-id"
+    }
+  }
+}

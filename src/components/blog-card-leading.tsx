@@ -7,23 +7,20 @@ interface Props {
   description: string;
   category: string;
   publishDate: string;
-  latest?: boolean;
 }
 
-export const BlogCard: React.FC<Props> = ({ title, description, category, publishDate, latest }) => {
+export const BlogCardLeading: React.FC<Props> = ({ title, description, category, publishDate }) => {
   return (
     <div className="h-full bg-white rounded-lg shadow-lg border border-white hover:shadow-xl hover:border-main-300 transition duration-300 ease-in-out">
-      <div className="flex flex-col justify-between p-6 h-full">
-        <h3 className="font-semibold font-serif text-xl mb-4 flex-grow">{title}</h3>
-        <div className="mb-8 md:h-40 overflow-hidden">
-          <div className="text-center md:text-left">
-            {latest && (
-              <p className="rounded-lg inline-block border bg-main-500 border-main-500 text-white px-4 py-1 md:mr-2 mb-2 md:mb-0">
-                <span className="uppercase text-xs font-bold tracking-wide">Latest post</span>
-              </p>
-            )}
+      <div className="flex flex-col justify-between p-6 md:p-8 h-full">
+        <h2 className="font-bold font-serif text-xl md:text-2xl mb-8 md:mb-4 flex-grow">{title}</h2>
+        <div className="overflow-hidden mb-8">
+          <div className="mb-4 md:mb-8 text-center md:text-left">
+            <p className="rounded-lg inline-block border bg-main-500 border-main-500 text-white px-4 py-1 md:mr-2 mb-2 md:mb-0">
+              <span className="uppercase text-xs font-bold tracking-wide">Latest post</span>
+            </p>
             {category && (
-              <p className="rounded-lg inline-block border border-main-500 text-main-500 px-4 py-1 mb-8">
+              <p className="rounded-lg inline-block border border-main-500 text-main-500 px-4 py-1">
                 <span className="uppercase text-xs font-bold tracking-wide">{category}</span>
               </p>
             )}

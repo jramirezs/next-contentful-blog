@@ -1,5 +1,5 @@
-import React, { useState, useRef, RefObject, useEffect } from 'react';
-import cn from 'classnames';
+import { useState, useRef, RefObject, useEffect } from 'react';
+import { clsx } from 'clsx';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -10,7 +10,7 @@ interface Props {
   parentRef?: RefObject<HTMLDivElement>;
 }
 
-const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
+export const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
   const [hidden, setHidden] = useState(false);
   const currentRef = useRef<HTMLDivElement>(null);
   const elementHeight = useRef(0);
@@ -44,65 +44,64 @@ const SocialShare: React.FC<Props> = ({ url, className, parentRef }) => {
   return (
     <div
       ref={currentRef}
-      className={cn(
-        'bg-main-500 w-full text-center flex bottom-0 justify-around fixed text-white p-2 transition duration-300 ease-in-out',
-        'lg:w-auto lg:flex-col lg:bottom-auto lg:p-4',
+      className={clsx(
+        'bottom-0 md:bottom-auto md:top-[76px] lg:top-[92px] fixed md:sticky md:rounded-b-lg bg-main-500 w-full text-center text-white p-2 lg:p-4 transition duration-300 ease-in-out',
         className,
         { 'z-0 opacity-0': hidden },
         { 'z-20 opacity-100': !hidden }
       )}
     >
-      <h4 className="hidden lg:inline text-xs text-light mb-4">Share</h4>
-      <div className="lg:mb-6">
-        <a
-          href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-        >
-          <FontAwesomeIcon
-            className="transform hover:scale-110 transition duration-100 ease-in-out hover:text-gray-100"
-            icon={faFacebook}
-            size="2x"
-          />
-        </a>
-      </div>
-      <div className="lg:mb-6">
-        <a
-          href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-            url
-          )}&title=${encodeURIComponent(message)}&summary=${encodeURIComponent(
-            message
-          )}&source=${encodeURIComponent(url)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Linkedin"
-        >
-          <FontAwesomeIcon
-            className="transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-100"
-            icon={faLinkedin}
-            size="2x"
-          />
-        </a>
-      </div>
-      <div>
-        <a
-          href={`https://twitter.com/intent/tweet/?text=${encodeURIComponent(
-            message
-          )}&url=${encodeURIComponent(url)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Twitter"
-        >
-          <FontAwesomeIcon
-            className="transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-100"
-            icon={faTwitter}
-            size="2x"
-          />
-        </a>
+      <h4 className="hidden md:block text-sm text-light mb-4">Share</h4>
+      <div className="flex justify-around">
+        <div>
+          <a
+            href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <FontAwesomeIcon
+              className="transform hover:scale-110 transition duration-100 ease-in-out hover:text-gray-100"
+              icon={faFacebook}
+              size="2x"
+            />
+          </a>
+        </div>
+        <div>
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+              url
+            )}&title=${encodeURIComponent(message)}&summary=${encodeURIComponent(message)}&source=${encodeURIComponent(
+              url
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Linkedin"
+          >
+            <FontAwesomeIcon
+              className="transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-100"
+              icon={faLinkedin}
+              size="2x"
+            />
+          </a>
+        </div>
+        <div>
+          <a
+            href={`https://twitter.com/intent/tweet/?text=${encodeURIComponent(message)}&url=${encodeURIComponent(
+              url
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+          >
+            <FontAwesomeIcon
+              className="transform hover:scale-110 transition duration-300 ease-in-out hover:text-gray-100"
+              icon={faTwitter}
+              size="2x"
+            />
+          </a>
+        </div>
       </div>
     </div>
   );
 };
-
-export default SocialShare;

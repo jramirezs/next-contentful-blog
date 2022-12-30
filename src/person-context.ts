@@ -1,7 +1,5 @@
 import { createContext } from 'react';
 
-import { Person } from '@blog/cms/person';
+import type { Person } from '@blog/cms/person';
 
-const PersonContext = createContext<Partial<Person>>({});
-
-export default PersonContext;
+export const PersonContext = createContext<Partial<Person>>({});

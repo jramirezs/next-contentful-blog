@@ -1,11 +1,9 @@
-/* eslint-disable react/no-danger */
-import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 const { GA_TRACKING_ID } = process.env;
 
 class NextSite extends Document {
-  render(): JSX.Element {
+  render() {
     return (
       <Html lang="en">
         <Head>
